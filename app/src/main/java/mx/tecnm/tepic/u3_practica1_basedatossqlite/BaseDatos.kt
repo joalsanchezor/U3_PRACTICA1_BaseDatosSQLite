@@ -12,7 +12,8 @@ class BaseDatos(
 ) : SQLiteOpenHelper(context, name, factory, version) {
 
     override fun onCreate(p: SQLiteDatabase) {
-
+        p.execSQL("CREATE TABLE CONDUCTOR( ID INTEGER PRIMARY KEY AUTOINCREMENT, NOMBRE VARCHAR(200), DOMICILIO VARCHAR(200), NOLICENCIA VARCHAR(50), VENCE VARCHAR(50))")
+        p.execSQL("CREATE TABLE VEHICULO( ID INTEGER PRIMARY KEY AUTOINCREMENT, PLACA VARCHAR(200), MARCA VARCHAR(200), MODELO VARCHAR(200), AÑO INT, IDCONDUCTOR INT)")
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
