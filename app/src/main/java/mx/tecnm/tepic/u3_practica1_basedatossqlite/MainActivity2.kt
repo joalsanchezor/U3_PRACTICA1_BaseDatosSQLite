@@ -17,7 +17,6 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-        listaCaptura()
         btnInsertar.setOnClickListener{
             val conductor = Conductor(this)
 
@@ -33,10 +32,17 @@ class MainActivity2 : AppCompatActivity() {
                 campoNombre.setText("")
                 campoLicencia.setText("")
                 campoVence.setText("")
-                listaCaptura()
             } else {
                 Toast.makeText(this, "ERROR! NO SE PUDO CAPTURAR", Toast.LENGTH_LONG).show()
             }
+        }
+
+        btnConsulta1.setOnClickListener {
+            val resultado = Conductor(this).consulta()
+            listaConductores.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,resultado)
+            idConductores.clear()
+            idConductores = Conductor(this).obtenerIDs()
+            activarEVENTO(listaConductores)
         }
     }
 

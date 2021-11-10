@@ -55,6 +55,13 @@
         android:layout_marginBottom="20dp"
         android:text="INSERTAR" />
 
+    <Button
+        android:id="@+id/btnConsulta1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="Mostrar Licencias Vencidas" />
+
     <ListView
         android:id="@+id/listaConductores"
         android:layout_width="match_parent"
