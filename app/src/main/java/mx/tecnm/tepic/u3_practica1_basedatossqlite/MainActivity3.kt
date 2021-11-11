@@ -22,16 +22,19 @@ class MainActivity3 : AppCompatActivity() {
             Vehiculo.placa = campoPlaca.text.toString()
             Vehiculo.marca = campoMarca.text.toString()
             Vehiculo.modelo = campoModelo.text.toString()
-            Vehiculo.año = campoAño.text.toString().toInt()
-            Vehiculo.idconductor = campoIdconductor.text.toString().toInt()
-            listaCaptura()
+            Vehiculo.anio = campoAño.text.toString()
+            Vehiculo.idconductor = campoIdconductor.text.toString()
             val resultado = Vehiculo.insertar()
+
             if(resultado) {
                 Toast.makeText(this, "SE CAPTURARON LOS DATOS", Toast.LENGTH_LONG).show()
-                campoDomicilio.setText("")
-                campoNombre.setText("")
-                campoLicencia.setText("")
-                campoVence.setText("")
+                campoPlaca.setText("")
+                campoMarca.setText("")
+                campoModelo.setText("")
+                campoAño.setText("")
+                campoIdconductor.setText("")
+                listaCaptura()
+
             } else {
                 Toast.makeText(this, "ERROR! NO SE PUDO CAPTURAR", Toast.LENGTH_LONG).show()
             }

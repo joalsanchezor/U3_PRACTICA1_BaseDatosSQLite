@@ -15,7 +15,7 @@ class Conductor(p:Context) {
     val pnt = p
 
     fun insertar(): Boolean{
-        val tablaConductor = BaseDatos(pnt, "Luigi_Pizza", null, 1).writableDatabase
+        val tablaConductor = BaseDatos(pnt, "LuigiPizza1", null, 1).writableDatabase
         val datos = ContentValues()
         datos.put("nombre", nombre)
         datos.put("domicilio", domicilio)
@@ -31,7 +31,7 @@ class Conductor(p:Context) {
     }
 
     fun consulta() : ArrayList<String>{
-        val tablaConductor = BaseDatos(pnt, "Luigi_Pizza", null, 1).readableDatabase
+        val tablaConductor = BaseDatos(pnt, "LuigiPizza1", null, 1).readableDatabase
         val resultadoConsulta = ArrayList<String>()
 
         val cursor = tablaConductor.query("CONDUCTOR", arrayOf("*"), null, null, null, null, null)
@@ -49,7 +49,7 @@ class Conductor(p:Context) {
     }
 
     fun obtenerIDs() : ArrayList<Int>{
-        val tablaConductor = BaseDatos(pnt,"Luigi_Pizza",null,1).readableDatabase
+        val tablaConductor = BaseDatos(pnt,"LuigiPizza1",null,1).readableDatabase
         val resultado = ArrayList<Int>()
         val cursor = tablaConductor.query("CONDUCTOR", arrayOf("*"),null, null, null, null, null)
         if(cursor.moveToFirst()){
@@ -62,14 +62,14 @@ class Conductor(p:Context) {
     }
 
     fun eliminar(idEliminar:Int) : Boolean{
-        val tablaConductor = BaseDatos(pnt,"Luigi_Pizza",null,1).writableDatabase
+        val tablaConductor = BaseDatos(pnt,"LuigiPizza1",null,1).writableDatabase
         val resultado = tablaConductor.delete("CONDUCTOR","ID=?", arrayOf(idEliminar.toString()))
         if(resultado==0) return false
         return true
     }
 
     fun consulta(idBuscar :String) : Conductor{
-        val tablaConductor = BaseDatos(pnt,"Luigi_Pizza",null,1).readableDatabase
+        val tablaConductor = BaseDatos(pnt,"LuigiPizza1",null,1).readableDatabase
         val cursor = tablaConductor.query("CONDUCTOR", arrayOf("*"),"ID=?",null,null,null,null)
         val conductor = Conductor(MainActivity2())
         if(cursor.moveToFirst()){
@@ -83,7 +83,7 @@ class Conductor(p:Context) {
     }
 
     fun actualizar(idActualizar :String):Boolean{
-        val tablaConductor = BaseDatos(pnt,"Luigi_Pizza",null,1).writableDatabase
+        val tablaConductor = BaseDatos(pnt,"LuigiPizza1",null,1).writableDatabase
         val datos = ContentValues()
 
         datos.put("nombre",nombre)
@@ -97,7 +97,7 @@ class Conductor(p:Context) {
     }
 
     fun consulta1() : ArrayList<String>{
-        val tablaConductor = BaseDatos(pnt, "Luigi_Pizza", null, 1).readableDatabase
+        val tablaConductor = BaseDatos(pnt, "LuigiPizza1", null, 1).readableDatabase
         val resultadoConsulta = ArrayList<String>()
 
         val cursor = tablaConductor.query("CONDUCTOR", arrayOf("*"), "VENCE<="+2021, null, null, null, null)
@@ -115,8 +115,8 @@ class Conductor(p:Context) {
     }
 
     fun consulta2() : ArrayList<String>{
-        val tablaConductor = BaseDatos(pnt, "Luigi_Pizza", null, 1).readableDatabase
-        val db = BaseDatos(pnt, "Luigi_Pizza",null,0).readableDatabase
+        val tablaConductor = BaseDatos(pnt, "LuigiPizza1", null, 1).readableDatabase
+        val db = BaseDatos(pnt, "LuigiPizza1",null,0).readableDatabase
         val resultadoConsulta = ArrayList<String>()
 
         val cursor = db.rawQuery("SELECT * FROM VEHICULO, CONDUCTOR " + "WHERE VEHICULO.IDCONDUCTOR = CONDUCTOR.ID " + "GROUP BY VEHICULO.ID",null)
