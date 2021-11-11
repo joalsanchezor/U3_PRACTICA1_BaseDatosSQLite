@@ -7,7 +7,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main2.*
 
 class MainActivity2 : AppCompatActivity() {
@@ -23,7 +22,7 @@ class MainActivity2 : AppCompatActivity() {
             conductor.nombre = campoNombre.text.toString()
             conductor.domicilio = campoDomicilio.text.toString()
             conductor.nolicencia = campoLicencia.text.toString()
-            conductor.vence = campoVence.text.toString()
+            conductor.vence = campoVence.text.toString().toInt()
 
             val resultado = conductor.insertar()
             if(resultado) {
@@ -32,13 +31,22 @@ class MainActivity2 : AppCompatActivity() {
                 campoNombre.setText("")
                 campoLicencia.setText("")
                 campoVence.setText("")
+                listaCaptura()
             } else {
                 Toast.makeText(this, "ERROR! NO SE PUDO CAPTURAR", Toast.LENGTH_LONG).show()
             }
         }
 
         btnConsulta1.setOnClickListener {
-            val resultado = Conductor(this).consulta()
+            val resultado = Conductor(this).consulta1()
+            listaConductores.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,resultado)
+            idConductores.clear()
+            idConductores = Conductor(this).obtenerIDs()
+            activarEVENTO(listaConductores)
+        }
+
+        btnConsulta2.setOnClickListener {
+            val resultado = Conductor(this).consulta2()
             listaConductores.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,resultado)
             idConductores.clear()
             idConductores = Conductor(this).obtenerIDs()
@@ -71,7 +79,7 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     private fun actualizar(idSeleccionado: Int){
-        val intento = Intent(this, MainActivity2::class.java)
+        val intento = Intent(this, MainActivity4::class.java)
         intento.putExtra("idActualizar",idSeleccionado.toString())
         startActivity(intento)
 

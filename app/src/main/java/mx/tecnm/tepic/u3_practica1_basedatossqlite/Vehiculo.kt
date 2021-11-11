@@ -20,7 +20,6 @@ class Vehiculo(p:Context) {
         datos.put("modelo", modelo)
         datos.put("año", año)
         datos.put("idconductor", idconductor)
-
         val resultado = tablaVehiculo.insert("VEHICULO", null, datos)
         if(resultado == -1L){
             return false
@@ -68,7 +67,7 @@ class Vehiculo(p:Context) {
     fun consulta(idABuscar:String) : Vehiculo{
         val tablaVehiculo = BaseDatos(pnt,"Luigi_Pizza",null,1).readableDatabase
         val cursor = tablaVehiculo.query("VEHICULO", arrayOf("*"),"ID=?", arrayOf(idABuscar),null,null,null)
-        val vehiculo = Vehiculo(MainActivity())
+        val vehiculo = Vehiculo(MainActivity3())
         if(cursor.moveToFirst()){
             vehiculo.placa = cursor.getString(1)
             vehiculo.marca = cursor.getString(2)
@@ -93,5 +92,22 @@ class Vehiculo(p:Context) {
         if(resultado == 0) return false
         return true
     }
-    
+
+    fun consulta1(idABuscar: Int) : ArrayList<String>{
+        val tablaConductor = BaseDatos(pnt, "Luigi_Pizza", null, 1).readableDatabase
+        val resultadoConsulta = ArrayList<String>()
+        val cursor = tablaConductor.query("VEHICULO", arrayOf("*"),
+            "(2021-AÑO)==$idABuscar", null, null, null, null)
+        if (cursor.moveToFirst()){
+            var dato = ""
+            do {
+                dato = cursor.getString(1)+"\n"+cursor.getString(2)+"\n"+cursor.getString(3)+"\n"+cursor.getString(4)
+                resultadoConsulta.add(dato)
+            }while (cursor.moveToNext())
+        } else {
+            resultadoConsulta.add("NO HAY DATOS EN VEHICULO")
+        }
+        tablaConductor.close()
+        return resultadoConsulta
+    }
 }
