@@ -37,14 +37,14 @@ class MainActivity3 : AppCompatActivity() {
             }
         }
 
-        btnConsulta1.setOnClickListener {
+        /*btnConsulta1.setOnClickListener {
             val campoTexto = EditText(this)
             campoTexto.setBackgroundColor(Color.WHITE)
             campoTexto.setPadding(20, 20, 20, 20)
             contenido.addView(campoTexto)
 
             consulta1(campoTexto.text.toString())
-        }
+        }*/
     }
 
     private fun listaCaptura() {

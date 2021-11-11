@@ -3,11 +3,13 @@ package mx.tecnm.tepic.u3_practica1_basedatossqlite
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main2.*
+import java.io.File
 
 class MainActivity2 : AppCompatActivity() {
     var idConductores = ArrayList<Int>()
@@ -106,6 +108,11 @@ class MainActivity2 : AppCompatActivity() {
                 d.cancel()
             }
             .show()
+    }
+
+    public fun exportarCSV() {
+
+
     }
 
 }

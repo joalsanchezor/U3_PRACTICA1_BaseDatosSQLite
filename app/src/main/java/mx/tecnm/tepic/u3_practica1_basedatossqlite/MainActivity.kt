@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(activity2)
         }
 
-        btnVehiculo.setOnClickListener {
+       btnVehiculo.setOnClickListener {
             var activity3 = Intent(this, MainActivity3::class.java)
             startActivity(activity3)
         }

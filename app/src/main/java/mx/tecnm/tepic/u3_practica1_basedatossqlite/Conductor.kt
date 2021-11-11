@@ -119,7 +119,7 @@ class Conductor(p:Context) {
         val db = BaseDatos(pnt, "Luigi_Pizza",null,0).readableDatabase
         val resultadoConsulta = ArrayList<String>()
 
-        val cursor = db.query("SELECT * FROM VEHICULO, CONDUCTOR " + "WHERE VEHICULO.IDCONDUCTOR = CONDUCTOR.ID " + "GROUP BY VEHICULO.ID", null,null, null,null,null,null)
+        val cursor = db.rawQuery("SELECT * FROM VEHICULO, CONDUCTOR " + "WHERE VEHICULO.IDCONDUCTOR = CONDUCTOR.ID " + "GROUP BY VEHICULO.ID",null)
         if (cursor.moveToFirst()){
             var dato = ""
             do {
