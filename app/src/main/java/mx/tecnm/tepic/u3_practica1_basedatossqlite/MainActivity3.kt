@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.activity_main2.btnInsertar
 import kotlinx.android.synthetic.main.activity_main3.*
@@ -16,13 +18,14 @@ class MainActivity3 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
 
+        listaCaptura()
         btnInsertar.setOnClickListener{
             val Vehiculo = Vehiculo(this)
 
             Vehiculo.placa = campoPlaca.text.toString()
             Vehiculo.marca = campoMarca.text.toString()
             Vehiculo.modelo = campoModelo.text.toString()
-            Vehiculo.anio = campoAño.text.toString()
+            Vehiculo.anio = campoAño.text.toString().toInt()
             Vehiculo.idconductor = campoIdconductor.text.toString()
             val resultado = Vehiculo.insertar()
 
@@ -40,14 +43,39 @@ class MainActivity3 : AppCompatActivity() {
             }
         }
 
-        /*btnConsulta1.setOnClickListener {
-            val campoTexto = EditText(this)
-            campoTexto.setBackgroundColor(Color.WHITE)
-            campoTexto.setPadding(20, 20, 20, 20)
-            contenido.addView(campoTexto)
+        btnVehiculosAniosUso.setOnClickListener {
+            consulta1(txtAniosUso.text.toString().toInt())
 
-            consulta1(campoTexto.text.toString())
-        }*/
+            val vehiculo = Vehiculo(this).exportarAU(txtAniosUso.text.toString().toInt())
+            if(Vehiculo(this).exportarAU(txtAniosUso.text.toString().toInt())){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA CONSULTA 1 CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
+            txtAniosUso.setText("")
+        }
+
+        btnVC.setOnClickListener {
+            consulta1(txtVC1.text.toString().toInt())
+
+
+            val vehiculo = Vehiculo(this).exportarVC(txtVC1.text.toString().toInt())
+            if(Vehiculo(this).exportarVC(txtVC1.text.toString().toInt())){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA CONSULTA 2 CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
+            txtVC1.setText("")
+        }
+
+        btnExportar1.setOnClickListener{
+            val vehiculo = Vehiculo(this).exportar()
+            if(Vehiculo(this).exportar()){
+                Toast.makeText(this,"SE GUARDO CONTENIDO DE LA TABLA CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     private fun listaCaptura() {
@@ -104,8 +132,8 @@ class MainActivity3 : AppCompatActivity() {
             .show()
     }
 
-    private fun consulta1(cantidad: String){
-        val resultado = Vehiculo(this).consulta1(cantidad.toInt())
+    private fun consulta1(cantidad: Int){
+        val resultado = Vehiculo(this).consulta1(cantidad)
         listaVehiculos.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,resultado)
         idVehiculos.clear()
         idVehiculos = Vehiculo(this).obtenerIDs()

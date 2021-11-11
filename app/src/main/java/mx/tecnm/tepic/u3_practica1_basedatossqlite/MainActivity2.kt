@@ -18,6 +18,7 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
+        listaCaptura()
         btnInsertar.setOnClickListener{
             val conductor = Conductor(this)
 
@@ -45,6 +46,13 @@ class MainActivity2 : AppCompatActivity() {
             idConductores.clear()
             idConductores = Conductor(this).obtenerIDs()
             activarEVENTO(listaConductores)
+
+            val conductor = Conductor(this).exportarLV()
+            if(Conductor(this).exportarLV()){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA CONSULTA 1 CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
         }
 
         btnConsulta2.setOnClickListener {
@@ -53,6 +61,39 @@ class MainActivity2 : AppCompatActivity() {
             idConductores.clear()
             idConductores = Conductor(this).obtenerIDs()
             activarEVENTO(listaConductores)
+
+            val conductor = Conductor(this).exportarSV()
+            if(Conductor(this).exportarSV()){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA CONSULTA 2 CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
+        }
+
+        btnConsulta3.setOnClickListener {
+            val resultado = Conductor(this).consulta3(txtVC.text.toString().toInt())
+            listaConductores.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,resultado)
+            idConductores.clear()
+            idConductores = Conductor(this).obtenerIDs()
+            activarEVENTO(listaConductores)
+
+            val conductor = Conductor(this).exportarVC(txtVC.text.toString().toInt())
+            if(Conductor(this).exportarVC(txtVC.text.toString().toInt())){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA CONSULTA 3 CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
+
+            txtVC.setText("")
+        }
+
+        btnExportar.setOnClickListener{
+            val conductor = Conductor(this).exportar()
+            if(Conductor(this).exportar()){
+                Toast.makeText(this,"SE GUARDO Y EXPORTO CONTENIDO DE LA TABLA CON EXITO",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,"NO SE PUDO EXPORTAR EL ARCHIVO",Toast.LENGTH_LONG).show()
+            }
         }
     }
 
@@ -110,9 +151,5 @@ class MainActivity2 : AppCompatActivity() {
             .show()
     }
 
-    public fun exportarCSV() {
-
-
-    }
 
 }

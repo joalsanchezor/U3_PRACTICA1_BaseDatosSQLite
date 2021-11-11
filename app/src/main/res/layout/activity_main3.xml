@@ -62,8 +62,45 @@
         android:id="@+id/btnInsertar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="INSERTAR" />
+
+    <Button
+        android:id="@+id/btnVehiculosAniosUso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Vehiculos Años Uso" />
+
+    <EditText
+        android:id="@+id/txtAniosUso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginBottom="10dp"
+        android:hint="INGRESE LOS AÑOS DE USO" />
+
+    <Button
+        android:id="@+id/btnVC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Vehiculo a Conductor:" />
+
+    <EditText
+        android:id="@+id/txtVC1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginBottom="10dp"
+        android:hint="INGRESE ID DEL CONDUCTOR" />
+
+    <Button
+        android:id="@+id/btnExportar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Exportar Datos" />
 
     <ListView
         android:id="@+id/listaVehiculos"

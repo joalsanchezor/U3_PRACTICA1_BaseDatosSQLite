@@ -52,22 +52,44 @@
         android:id="@+id/btnInsertar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="INSERTAR" />
 
     <Button
         android:id="@+id/btnConsulta1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Licencias Vencidas" />
 
     <Button
         android:id="@+id/btnConsulta2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:text="Conductores Sin Vehiculo" />
+
+    <Button
+        android:id="@+id/btnConsulta3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Conductor a Vehiculo:" />
+
+    <EditText
+        android:id="@+id/txtVC"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginBottom="10dp"
+        android:hint="INGRESE EL ID DEL VEHICULO" />
+
+    <Button
+        android:id="@+id/btnExportar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Exportar Datos" />
 
     <ListView
         android:id="@+id/listaConductores"
